@@ -11,7 +11,7 @@ This repository demonstrates how to create a bot application with **Spring frame
 	2. Choose your channel
 	3. Edit "Basic Information"
 
-* Add `application.properties` file in *src/main/resources* directory, and fill it with your Cloudinary's cloud name, api key, and api secret, like the following:
+* Add `application.properties` file in *src/main/resources* directory, and fill it with your channel secret and channel access token, like the following:
 
 	```ini
 com.linecorp.channel_secret=<your_channel_secret>
