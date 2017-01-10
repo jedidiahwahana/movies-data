@@ -1,4 +1,4 @@
-package com.linecorp.example.linebot;
+package com.linecorp.example.movies-data;
 
 public class Movie {
 

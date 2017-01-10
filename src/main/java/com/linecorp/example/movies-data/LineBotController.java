@@ -1,5 +1,5 @@
 
-package com.linecorp.example.linebot;
+package com.linecorp.example.movies-data;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -106,6 +106,7 @@ public class LineBotController
         String idTarget = " ";
         String eventType = payload.events[0].type;
         
+        //Get event's type
         if (eventType.equals("join")){
             if (payload.events[0].source.type.equals("group")){
                 replyToUser(payload.events[0].replyToken, "Hello Group");
@@ -113,7 +114,7 @@ public class LineBotController
             if (payload.events[0].source.type.equals("room")){
                 replyToUser(payload.events[0].replyToken, "Hello Room");
             }
-        } else if (eventType.equals("message")){
+        } else if (eventType.equals("message")){    //Event's type is message
             if (payload.events[0].source.type.equals("group")){
                 idTarget = payload.events[0].source.groupId;
             } else if (payload.events[0].source.type.equals("room")){
@@ -152,6 +153,7 @@ public class LineBotController
         return new ResponseEntity<String>(HttpStatus.OK);
     }
     
+    //Method for get movie data from OMDb API
     private void getMovieData(String title, Payload ePayload, String targetID) throws IOException{
         String userTxt = title;
         
@@ -174,6 +176,7 @@ public class LineBotController
         
         try{
             c.start();
+            //Use HTTP Get to retrieve data
             HttpGet get = new HttpGet(URI);
             
             Future<HttpResponse> future = c.execute(get, null);
@@ -205,7 +208,7 @@ public class LineBotController
         Movie movie = mGson.fromJson(jObjGet, Movie.class);
         String msgToUser = " ";
         
-        //Check user request
+        //Check user's request
         if (userTxt.contains("title")){
             msgToUser = movie.getMovie();
             pushPoster(targetID, movie.getPoster());
@@ -229,6 +232,7 @@ public class LineBotController
         
         System.out.println("Message to user: " + msgToUser);
         
+        //Check whether response successfully retrieve or not
         if (msgToUser.length() <= 11 || !ePayload.events[0].message.type.equals("text")){
             replyToUser(ePayload.events[0].replyToken, "Request Timeout");
         } else {
@@ -236,6 +240,7 @@ public class LineBotController
         }
     }
 
+    //Method for reply user's message
     private void replyToUser(String rToken, String messageToUser){
         TextMessage textMessage = new TextMessage(messageToUser);
         ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
@@ -252,6 +257,7 @@ public class LineBotController
         }
     }
     
+    //Method for send movie's poster to user
     private void pushPoster(String sourceId, String poster_url){
         ImageMessage imageMessage = new ImageMessage(poster_url, poster_url);
         PushMessage pushMessage = new PushMessage(sourceId,imageMessage);
@@ -268,6 +274,7 @@ public class LineBotController
         }
     }
     
+    //Method for push message to user
     private void pushType(String sourceId, String txt){
         TextMessage textMessage = new TextMessage(txt);
         PushMessage pushMessage = new PushMessage(sourceId,textMessage);
@@ -284,6 +291,7 @@ public class LineBotController
         }
     }
     
+    //Method for send caraousel template message to user
     private void carouselForUser(String poster_url, String sourceId, String title){
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                     Arrays.asList(new CarouselColumn
@@ -311,6 +319,7 @@ public class LineBotController
         }
     }
     
+    //Method for leave group or room
     private void leaveGR(String id, String type){
         try {
             if (type.equals("group")){
