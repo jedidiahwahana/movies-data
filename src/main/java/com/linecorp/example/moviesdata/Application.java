@@ -1,5 +1,5 @@
 
-package com.linecorp.example.movies-data;
+package com.linecorp.example.moviesdata;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

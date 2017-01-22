@@ -1,5 +1,5 @@
 
-package com.linecorp.example.movies-data;
+package com.linecorp.example.moviesdata;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;

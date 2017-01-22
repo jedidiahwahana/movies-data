@@ -1,4 +1,4 @@
-package com.linecorp.example.movies-data;
+package com.linecorp.example.moviesdata;
 
 public class Events {
     public String type;
