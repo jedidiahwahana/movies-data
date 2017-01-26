@@ -107,6 +107,19 @@ com.linecorp.channel_access_token=<your_channel_access_token>
 
 `heroku logs --tail`
 
+### Usage
+Keywords to use this bots:
+* title		: Give full data about the movie
+* plot		: Give summary of the movie
+* poster	: Give movie's poster
+* released	: Give released date of the movie
+* director	: Give movie's director
+* writer	: Give movie's writer
+* actors	: Give list of actors who played in the movie 
+* awards	: Give awards which won by the movie
+* carousel	: Give option to user to pick data which they want
+Type ***keyword* + "*title*"** in the bots to use these keywords
+
 
 ### How do I contribute? ###
 
