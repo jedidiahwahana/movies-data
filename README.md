@@ -118,6 +118,7 @@ Keywords to use this bots:
 * actors	: Give list of actors who played in the movie 
 * awards	: Give awards which won by the movie
 * carousel	: Give option to user to pick data which they want
+
 Type ***keyword* + "*title*"** in the bots to use these keywords
 
 
